@@ -4,7 +4,7 @@ const async = require('async');
 gpio.setMode(gpio.MODE_BCM)
 
 // GPIO17,GPIO18,GPIO21,GPIO22
-const stepPins = [17, 18, 27, 22];
+const stepPins = [11, 12, 13, 15];
 // Read wait time from command line
 const waitTime = 10 / 1000;
 // Define advanced sequence
@@ -26,7 +26,7 @@ function setupPin(pin) {
         return reject(err);
       }
       console.log(`Pin ${pin} was setup`);
-      return resolve(pin, direction);
+      return resolve(pin);
     });
   });
 }
