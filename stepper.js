@@ -14,57 +14,58 @@ for (let pin of stepPins) {
 
 // // Define advanced sequence
 // // as shown in manufacturers datasheet
-// const seq = [[1, 0, 0, 1],
-// [1, 0, 0, 0],
-// [1, 1, 0, 0],
-// [0, 1, 0, 0],
-// [0, 1, 1, 0],
-// [0, 0, 1, 0],
-// [0, 0, 1, 1],
-// [0, 0, 0, 1]];
+const seq = [[1, 0, 0, 1],
+[1, 0, 0, 0],
+[1, 1, 0, 0],
+[0, 1, 0, 0],
+[0, 1, 1, 0],
+[0, 0, 1, 0],
+[0, 0, 1, 1],
+[0, 0, 0, 1]];
 
-// const stepCount = seq.length;
+const stepCount = seq.length;
 
-// const stepDir = 1; // Set to 1 or 2 for clockwise
-// // Set to -1 or -2 for anti-clockwise
 
-// // Read wait time from command line
-// const waitTime = 10 / 1000;
+const stepDir = 1; // Set to 1 or 2 for clockwise
+// Set to -1 or -2 for anti-clockwise
 
-// //Initialise variables
-// let stepCounter = 0;
+// Read wait time from command line
+const waitTime = 10 / 1000;
 
-// //Start main loop
-// function step() {
-//   console.log(stepCounter);
-//   console.log(seq[stepCounter]);
+//Initialise variables
+let stepCounter = 0;
 
-//   for (let i = 0; i < 4; i++) {
-//     const xpin = stepPins[i];
-//     if (seq[stepCounter][i] !== 0) {
-//       console.log(`Enable gpio ${xpin}`);
-//       gpio.output(xpin, true);
-//     } else {
-//       gpio.output(xpin, false);
-//     }
-//   }
+//Start main loop
+function step() {
+  console.log(stepCounter);
+  console.log(seq[stepCounter]);
 
-//   stepCounter += stepDir;
+  for (let i = 0; i < 4; i++) {
+    const xpin = stepPins[i];
+    if (seq[stepCounter][i] !== 0) {
+      console.log(`Enable gpio ${xpin}`);
+      gpio.output(xpin, true);
+    } else {
+      gpio.output(xpin, false);
+    }
+  }
 
-//   //If we reach the end of the sequence
-//   //start again
-//   if (stepCounter >= stepCount) {
-//     stepCounter = 0;
-//   }
+  stepCounter += stepDir;
 
-//   if (stepCounter < 0) {
-//     stepCounter = stepCount + stepDir;
-//   }
+  //If we reach the end of the sequence
+  //start again
+  if (stepCounter >= stepCount) {
+    stepCounter = 0;
+  }
 
-//   //Wait before moving on
-//   setTimeout(step, waitTime);
-// }
+  if (stepCounter < 0) {
+    stepCounter = stepCount + stepDir;
+  }
 
-// step();
+  //Wait before moving on
+  setTimeout(step, waitTime);
+}
+
+step();
 
 
