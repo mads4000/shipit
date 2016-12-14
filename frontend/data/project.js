@@ -1,3 +1,8 @@
 module.exports = (env) => ({
-    env
+    env,
+    data: {
+        seo: {
+            title: "Entwickler Futterautomat"
+        }
+    }
 });
