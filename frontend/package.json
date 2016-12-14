@@ -1,0 +1,33 @@
+{
+  "name": "ship-this-frontend",
+  "version": "0.0.0",
+  "description": "app template to use by itself or from within R",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "prebuild": "rm ../public/main*",
+    "build": "webpack",
+    "serve": "webpack-dev-server",
+    "dist": "NODE_ENV=production webpack"
+  },
+  "author": "Süddeutsche Zeitung Entwicklungsredaktion",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "eslint": "^3.10.0",
+    "eslint-config-sz": "^3.10.0",
+    "webpack-dev-server": "^1.14.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.20.0",
+    "babel-loader": "^6.2.9",
+    "babel-preset-es2015": "^6.18.0",
+    "sz-image-size-loader": "^1.0.0",
+    "szig-build-tool": "^8.0.0",
+    "szig-embed": "^0.5.3",
+    "szig-frontend-toolkit": "^8.0.2",
+    "szig-iggypus-utils": "^1.0.1",
+    "szig-style": "^6.0.0",
+    "szig-with-observable": "^0.1.0"
+  }
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de"
+      class="desktop"
+      {{!-- Best way to add open graph schema, @see http://stackoverflow.com/a/14207025 --}}
+      xmlns:fb="http://ogp.me/ns/fb#"
+>
+<head prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article#">
+
+    {{!-- Kick off stylesheet downloading asap --}}
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+
+    {{> szig-frontend-toolkit/lib/components/head/head data.seo}}
+
+</head>
+
+<body>
+    {{> szig-frontend-toolkit/lib/components/header/header
+        includeSmallIcon = false
+        type = "dark"
+    }}
+
+
+    <script async src="main.js"></script>
+
+</body>
+</html>

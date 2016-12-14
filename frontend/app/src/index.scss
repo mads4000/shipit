@@ -1,0 +1,5 @@
+// setup fonts
+$szig-font-file-types: {{FONT_FILE_TYPES}};
+$szig-font-base-url: {{FONT_URL}};
+
+@import "szig-frontend-toolkit/lib/components/header/header";
