@@ -41,32 +41,8 @@ function step() {
 
   for (let i = 0; i < 4; i++) {
     const xpin = stepPins[i];
-    if (seq[stepCounter][pin] !== 0) {
-      console.log(`Enable gpio ${xping}`);
-      gpio.output(xpin, true);
-    } else {
-      gpio.output(xpin, false);
-    }
-  }
-
-  stepCounter += stepDir;
-
-  //If we reach the end of the sequence
-  //start again
-  if (stepCounter >= stepCount) {
-    stepCounter = 0;
-  }
-
-  if (stepCounter < 0) {
-    stepCounter = stepCount + stepDir;
-  }
-  console.log(stepCounter);
-  console.log(seq[stepCounter]);
-
-  for (let i = 0; i < 4; i++) {
-    const xpin = stepPins[i];
-    if (seq[stepCounter][pin] !== 0) {
-      console.log(`Enable gpio ${xping}`);
+    if (seq[stepCounter][i] !== 0) {
+      console.log(`Enable gpio ${xpin}`);
       gpio.output(xpin, true);
     } else {
       gpio.output(xpin, false);
