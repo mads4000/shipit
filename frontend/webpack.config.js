@@ -19,7 +19,7 @@ module.exports = cp({
     devtool: env.PRODUCTION ? null : "#cheap-module-source-map",
 
     entry: {
-        main: "./app/src/index.js"
+        main: ["fetch-polyfill", "./app/src/index.js"]
     },
 
     output: {
