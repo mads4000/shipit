@@ -22,6 +22,7 @@
     "babel-core": "^6.20.0",
     "babel-loader": "^6.2.9",
     "babel-preset-es2015": "^6.18.0",
+    "fetch-polyfill": "^0.8.2",
     "sz-image-size-loader": "^1.0.0",
     "szig-build-tool": "^8.0.0",
     "szig-embed": "^0.5.3",

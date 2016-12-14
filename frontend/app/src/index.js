@@ -21,11 +21,19 @@ if (document.readyState !== "loading") {
 }
 
 function runApp() {
+    let isWorking = false;
+
     const $button = document.getElementById("give-gutti");
     const $msgSuccess = document.getElementById("msg-gutti-success");
     const $msgError = document.getElementById("msg-gutti-error");
 
     $button.addEventListener("click", () => {
+        if (isWorking) {
+            return;
+        }
+
+        isWorking = true;
+
         $button.classList.add("sz-button--clicked");
         $button.classList.add("sz-button--disabled");
 
