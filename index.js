@@ -1,6 +1,7 @@
 const restify = require('restify');
 
 function gutti(req, res, next) {
+  res.contentType = "text/plain";
   res.send(200, 'ok');
   next();
 }
