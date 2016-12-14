@@ -24,6 +24,7 @@ function runApp() {
     let isWorking = false;
 
     const $button = document.getElementById("give-gutti");
+    const $msgProgress = document.getElementById("msg-gutti-info");
     const $msgSuccess = document.getElementById("msg-gutti-success");
     const $msgError = document.getElementById("msg-gutti-error");
 
@@ -38,16 +39,22 @@ function runApp() {
         $button.classList.add("sz-button--disabled");
 
         setTimeout(() => {
+            $button.style.display = "none";
+            $msgProgress.style.display = "block";
+
             fetch("/gutti")
                 .then((res) => res.text())
                 .then((text) => {
-                    $button.style.display = "none";
+                    setTimeout(() => {
+                        $button.style.display = "none";
+                        $msgProgress.style.display = "none";
 
-                    if (text === "ok") {
-                        $msgSuccess.style.display = "block";
-                    } else {
-                        $msgError.style.display = "block";
-                    }
+                        if (text === "ok") {
+                            $msgSuccess.style.display = "block";
+                        } else {
+                            $msgError.style.display = "block";
+                        }
+                    }, 3000);
                 })
                 .catch((err) => {
                     console.log("Error", err);

@@ -57,15 +57,34 @@ body {
             }
         }
 
+        .sz-message--info {
+            display: none;
+
+            img {
+                display: inline-block;
+                max-width: 50%;
+            }
+        }
+
         .sz-message--success,
         .sz-message--error {
             display: none;
+
+            img {
+                display: inline-block;
+                max-width: 80%;
+                margin-top: 1rem;
+            }
         }
 
         img {
             margin-left: auto;
             margin-right: auto;
-            max-width: 100%;
+            max-width: 30%;
+
+            @media (max-width: 400px) {
+                max-width: 80%;
+            }
         }
     }
 
@@ -84,6 +103,10 @@ body {
     }
 
     .sz-message {
+        &--info {
+            @include szig-font-text-bold();
+        }
+
         &--success {
             @include szig-font-text-bold();
 
