@@ -20,7 +20,7 @@ const seq = [[1, 0, 0, 1],
 
 
 function setupPin(pin) {
-  return () => new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     gpio.setup(pin, gpio.DIR_OUT, err => {
       if (err) {
         return reject(err);
@@ -44,12 +44,19 @@ function write(pin, direction) {
   });
 }
 
+function setupAllPins() {
+  const allPinsSetup = stepPins.map(pin => setupPin(pin));
+  return Promise.all(allPinsSetup).then(() => console.log('all pins setup', stepPins));
+}
+
+function writeAllPins(values) {
+  const allPinsWritten = values.map((value, index) => write(stepPins[index], value));
+  return Promise.all(allPinsWritten).then(() => console.log('all prins written', values));
+}
+
 function setup() {
-  return Promise.all(stepPins.map(pin => setupPin(pin)))
-    .then(() => { console.log('All Pins were setup') })
-    .then(() => {
-      return Promise.all(stepPins.map(pin => write(pin, false)));
-    })
+  return setupAllPins()
+    .then(() => writeAllPins([0, 0, 0, 0]))
     .then(console.log('All pins should be turned off'));
 }
 
