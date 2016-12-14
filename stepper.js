@@ -4,7 +4,7 @@ const async = require('async');
 gpio.setMode(gpio.MODE_BCM)
 
 // GPIO17,GPIO18,GPIO21,GPIO22
-const stepPins = [17, 18, 27, 22];
+const stepPins = [11, 12, 13, 15];
 // Read wait time from command line
 const waitTime = 10 / 1000;
 // Define advanced sequence
@@ -26,7 +26,7 @@ function setupPin(pin) {
         return reject(err);
       }
       console.log(`Pin ${pin} was setup`);
-      return resolve(pin, direction);
+      return resolve(pin);
     });
   });
 }
@@ -44,13 +44,20 @@ function write(pin, direction) {
   });
 }
 
+function setupAllPins() {
+  const allPinsSetup = stepPins.map(pin => setupPin(pin));
+  return Promise.all(allPinsSetup).then(() => console.log('all pins setup', stepPins));
+}
+
+function writeAllPins(values) {
+  const allPinsWritten = values.map((value, index) => write(stepPins[index], value));
+  return Promise.all(allPinsWritten).then(() => console.log('all prins written', values));
+}
+
 function setup() {
-  return Promise.all(stepPins.map(pin => setupPin(pin)))
-    .then(() => { console.log('All Pins were setup') })
-    .then(() => {
-      return Promise.all(stepPins.map(pin => write(pin, false)));
-    })
-    .then(console.log('All pins should be turned off'));
+  return setupAllPins()
+    .then(() => writeAllPins([0, 0, 0, 0]))
+    .then(() => console.log('All pins should be turned off'));
 }
 
 function step(stepCounter) {
@@ -84,7 +91,7 @@ function sequenzer() {
     .then(sequenzer());
 }
 
-setup().then(sequenzer);
+setup().then(() => sequenzer());
 
 
 
