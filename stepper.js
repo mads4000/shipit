@@ -57,7 +57,7 @@ function writeAllPins(values) {
 function setup() {
   return setupAllPins()
     .then(() => writeAllPins([0, 0, 0, 0]))
-    .then(console.log('All pins should be turned off'));
+    .then(() => console.log('All pins should be turned off'));
 }
 
 function step(stepCounter) {
