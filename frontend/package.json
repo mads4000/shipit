@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "prebuild": "rm ../public/main*",
-    "build": "webpack",
-    "serve": "webpack-dev-server",
-    "dist": "NODE_ENV=production webpack"
+    "prebuild": "rm -f ../public/main*",
+    "build": "CHANNEL=tablet webpack",
+    "serve": "CHANNEL=tablet webpack-dev-server",
+    "dist": "CHANNEL=tablet NODE_ENV=production webpack"
   },
   "author": "Süddeutsche Zeitung Entwicklungsredaktion",
   "license": "UNLICENSED",
