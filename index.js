@@ -1,9 +1,20 @@
+const child_process = require("child_process");
 const restify = require('restify');
 
 function gutti(req, res, next) {
-  res.contentType = "text/plain";
-  res.send(200, 'ok');
-  next();
+  const proc = child_process.spawn("python", ["stepper.py"]);
+
+  proc.once("exit", () => {
+    console.log("Stepper script exited");
+
+    res.contentType = "text/plain";
+    res.send(200, 'ok');
+    next();
+  });
+
+  setTimeout(() => {
+    proc.kill("SIGTERM");
+  }, 10000);
 }
 
 var server = restify.createServer({name:'guttiMachine'});
