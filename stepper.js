@@ -53,7 +53,7 @@ function setup() {
   return Promise.all(allPinsPromise)
     .then(() => { console('All Pins were setup') })
     .then(() => {
-      return Promise.all(stepPins.foreach(pin => write(pin, false)));
+      return Promise.all(stepPins.map(pin => write(pin, false)));
     })
     .then(console.log('All pins should be turned off'));
 }
