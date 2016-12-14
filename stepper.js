@@ -25,6 +25,7 @@ function setupPin(pin) {
       if (err) {
         return reject(err);
       }
+      console.log(`Pin ${pin} was setup`);
       return resolve(pin, direction);
     });
   });
@@ -37,25 +38,17 @@ function write(pin, direction) {
       if (err) {
         return reject(err);
       }
+      console.log(`Pin ${pin} was set to ${direction}`);
       return resolve(pin, direction);
     });
   });
 }
 
 function setup() {
-  const allPinsPromise = [];
-
-  // Set all pins as output
-  for (let pin of stepPins) {
-    allPinsPromise.push(setupPin(pin));
-  }
-
-  return Promise.all(allPinsPromise)
-    .then(() => { console('All Pins were setup') })
+  return Promise.all(stepPins.map(pin => setupPin(pin)))
+    .then(() => { console.log('All Pins were setup') })
     .then(() => {
-      return Promise.all(stepPins.foreach(pin => {
-        write(pin, false);
-      }));
+      return Promise.all(stepPins.map(pin => write(pin, false)));
     })
     .then(console.log('All pins should be turned off'));
 }
@@ -65,7 +58,6 @@ function step(stepCounter) {
 
   stepPins.forEach((pin, index) => {
     if (seq[stepCounter][index] !== 0) {
-      console.log(`Enable gpio ${pin}`);
       allPins.push(write(pin, true));
     } else {
       allPins.push(write(pin, false));
