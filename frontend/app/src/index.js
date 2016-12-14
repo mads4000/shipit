@@ -27,6 +27,11 @@ function runApp() {
     const $msgProgress = document.getElementById("msg-gutti-info");
     const $msgSuccess = document.getElementById("msg-gutti-success");
     const $msgError = document.getElementById("msg-gutti-error");
+    const $buttonRetry = document.getElementById("retry-gutti");
+
+    $buttonRetry.addEventListener("click", () => {
+        window.location.reload();
+    });
 
     $button.addEventListener("click", () => {
         if (isWorking) {
