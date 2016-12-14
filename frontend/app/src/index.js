@@ -21,5 +21,32 @@ if (document.readyState !== "loading") {
 }
 
 function runApp() {
+    const $button = document.getElementById("give-gutti");
+    const $msgSuccess = document.getElementById("msg-gutti-success");
+    const $msgError = document.getElementById("msg-gutti-error");
 
+    $button.addEventListener("click", () => {
+        $button.classList.add("sz-button--clicked");
+        $button.classList.add("sz-button--disabled");
+
+        setTimeout(() => {
+            fetch("/gutti")
+                .then((res) => res.text())
+                .then((text) => {
+                    $button.style.display = "none";
+
+                    if (text === "ok") {
+                        $msgSuccess.style.display = "block";
+                    } else {
+                        $msgError.style.display = "block";
+                    }
+                })
+                .catch((err) => {
+                    console.log("Error", err);
+
+                    $button.style.display = "none";
+                    $msgError.style.display = "block";
+                });
+        }, 300);
+    });
 }

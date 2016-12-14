@@ -2,4 +2,91 @@
 $szig-font-file-types: {{FONT_FILE_TYPES}};
 $szig-font-base-url: {{FONT_URL}};
 
+@import "szig-style/themes/base/index";
 @import "szig-frontend-toolkit/lib/components/header/header";
+
+body {
+    @include szig-font-text();
+    line-height: 1.2;
+
+    h1, h2, h3 {
+        @include szig-font-sans-bold();
+    }
+
+    main {
+        padding: 1rem;
+        max-width: 744px;
+
+        text-align: center;
+
+        > * + * {
+            margin-top: 2rem;
+        }
+
+        .sz-button {
+            display: inline-block;
+            padding: 1rem;
+            transition: all 200ms ease-in-out;
+
+            &:link,
+            &:focus,
+            &:visited,
+            &:active,
+            &:hover {
+                color: black;
+                background-color: #eee;
+                text-decoration: none;
+            }
+
+            &:hover,
+            &--clicked {
+                transform: scale(1.05);
+            }
+
+            &--disabled {
+                &:link,
+                &:focus,
+                &:visited,
+                &:active,
+                &:hover {
+                    color: #ccc;
+                }
+
+                border-color: #ccc;
+            }
+        }
+
+        .sz-message--success,
+        .sz-message--error {
+            display: none;
+        }
+    }
+
+    .sz-button {
+        @include szig-font-sans();
+        font-size: 2rem;
+
+        border: 2px solid black;
+        border-radius: 0.5rem;
+    }
+
+    .sz-credits {
+        @include szig-font-text-italic();
+
+        color: #999;
+    }
+
+    .sz-message {
+        &--success {
+            @include szig-font-text-bold();
+
+            color: green;
+        }
+
+        &--error {
+            @include szig-font-text-bold();
+
+            color: red;
+        }
+    }
+}
