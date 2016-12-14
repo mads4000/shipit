@@ -12,8 +12,9 @@
   "author": "ship-it-day",
   "license": "ISC",
   "dependencies": {
-    "restify": "^4.0.0",
-    "nodemon": "^1.11.0"
+    "async": "^2.1.4",
+    "nodemon": "^1.11.0",
+    "restify": "^4.0.0"
   },
   "devDependencies": {
     "johnny-five": "^0.10.6",
