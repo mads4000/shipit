@@ -25,6 +25,7 @@ function setupPin(pin) {
       if (err) {
         return reject(err);
       }
+      console.log(`Pin ${pin} was setup`);
       return resolve(pin, direction);
     });
   });
@@ -37,6 +38,7 @@ function write(pin, direction) {
       if (err) {
         return reject(err);
       }
+      console.log(`Pin ${pin} was set to ${direction}`);
       return resolve(pin, direction);
     });
   });
@@ -44,7 +46,7 @@ function write(pin, direction) {
 
 function setup() {
   return Promise.all(stepPins.map(pin => setupPin(pin)))
-    .then(() => { console('All Pins were setup') })
+    .then(() => { console.log('All Pins were setup') })
     .then(() => {
       return Promise.all(stepPins.map(pin => write(pin, false)));
     })
@@ -56,7 +58,6 @@ function step(stepCounter) {
 
   stepPins.forEach((pin, index) => {
     if (seq[stepCounter][index] !== 0) {
-      console.log(`Enable gpio ${pin}`);
       allPins.push(write(pin, true));
     } else {
       allPins.push(write(pin, false));
