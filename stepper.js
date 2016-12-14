@@ -20,7 +20,7 @@ const seq = [[1, 0, 0, 1],
 
 
 function setupPin(pin) {
-  return new Promise((resolve, reject) => {
+  return () => new Promise((resolve, reject) => {
     gpio.setup(pin, gpio.DIR_OUT, err => {
       if (err) {
         return reject(err);
