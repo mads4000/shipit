@@ -1,11 +1,14 @@
-var five = require("johnny-five");
-var Raspi = require("raspi-io");
-var board = new five.Board({
-  io: new Raspi()
-});
+const restify = require('restify');
 
-board.on("ready", function() {
-console.log("ready");
-  var led = new five.Led("P1-7");
-  led.blink();
+function gutti(req, res, next) {
+  res.send(200, 'ok');
+  next();
+}
+
+var server = restify.createServer({name:'guttiMachine'});
+server.get('/gutti', gutti);
+server.get('/', restify.serveStatic({directory: './public', default: 'index.html'}));
+
+server.listen(8080, function() {
+  console.log('%s listening at %s', server.name, server.url);
 });
