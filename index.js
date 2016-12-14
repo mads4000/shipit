@@ -2,7 +2,7 @@ const child_process = require("child_process");
 const restify = require('restify');
 
 function gutti(req, res, next) {
-  const proc = child_process.spawn("python", ["stepper.py"]);
+  const proc = child_process.spawn("python", ["stepper.py", "4"]);
 
   proc.once("exit", () => {
     console.log("Stepper script exited");
