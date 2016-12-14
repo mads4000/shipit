@@ -91,7 +91,7 @@ function sequenzer() {
     .then(sequenzer());
 }
 
-setup().then(sequenzer);
+setup().then(() => sequenzer);
 
 
 
