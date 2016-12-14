@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "./node_modules/.bin/nodemon index.js"
+    "build": "cd frontend && npm run dist && cd ..",
+    "dev": "npm run build && ./node_modules/.bin/nodemon index.js",
+    "start": "node index.js"
   },
   "author": "ship-it-day",
   "license": "ISC",
