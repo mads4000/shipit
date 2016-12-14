@@ -44,14 +44,14 @@ function write(pin, direction) {
 
 function setup() {
   const allPinsPromise = [];
-  
+
   // Set all pins as output
   for (let pin of stepPins) {
     allPinsPromise.push(setupPin(pin));
   }
 
   return Promise.all(allPinsPromise)
-    .then(console('All Pins were setup'))
+    .then(() => { console('All Pins were setup') })
     .then(() => {
       return Promise.all(stepPins.foreach(pin => {
         write(pin, false);
